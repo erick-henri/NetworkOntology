@@ -1,0 +1,1007 @@
+@prefix : <http://example.com#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.com#> .
+
+<http://network.com> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#qualifiedCardinality
+owl:qualifiedCardinality rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://network.com#Encaminha_DADOS
+:Encaminha_DADOS rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :Trafego ;
+                 owl:inverseOf :Request_DADOS ;
+                 rdfs:domain :Servidor_Backup ;
+                 rdfs:range :SWITCH_Core .
+
+
+###  http://network.com#Encaminha_DNS
+:Encaminha_DNS rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :Trafego ;
+               owl:inverseOf :Request_DNS ;
+               rdfs:domain :Servidor_DNS ;
+               rdfs:range :SWITCH_Core .
+
+
+###  http://network.com#Envia_Dados
+:Envia_Dados rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Roteador ;
+             rdfs:range :SWITCH_Core .
+
+
+###  http://network.com#Envia_IP
+:Envia_IP rdf:type owl:ObjectProperty ;
+          rdfs:domain :SWITCH_Distribuico ;
+          rdfs:range :IP .
+
+
+###  http://network.com#Envia_Informacoess
+:Envia_Informacoess rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :Solicita_Informacoes ;
+                    rdf:type owl:TransitiveProperty .
+
+
+###  http://network.com#Recebe_IP
+:Recebe_IP rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Equipamento ;
+           rdfs:range :IP .
+
+
+###  http://network.com#Request_DADOS
+:Request_DADOS rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :Trafego ;
+               rdfs:domain :SWITCH_Core ;
+               rdfs:range :Servidor_Backup .
+
+
+###  http://network.com#Request_DNS
+:Request_DNS rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :Trafego .
+
+
+###  http://network.com#SW_Multidistribuicao
+:SW_Multidistribuicao rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://network.com#Solicita_Informacoes
+:Solicita_Informacoes rdf:type owl:ObjectProperty ,
+                               owl:TransitiveProperty .
+
+
+###  http://network.com#Trafego
+:Trafego rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://network.com#comunica
+:comunica rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:SymmetricProperty ;
+          rdfs:domain :Equipamento ;
+          rdfs:range :Equipamento .
+
+
+###  http://network.com#multiDistribuicaoHasCelular
+:multiDistribuicaoHasCelular rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf :SW_Multidistribuicao ;
+                             rdfs:domain :MultiDistribuicao ;
+                             rdfs:range :Celular .
+
+
+###  http://network.com#multiDistribuicaoHasImpressora
+:multiDistribuicaoHasImpressora rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf :SW_Multidistribuicao ;
+                                rdfs:domain :MultiDistribuicao ;
+                                rdfs:range :Impressora .
+
+
+###  http://network.com#multiDistribuicaoHasRamal
+:multiDistribuicaoHasRamal rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :SW_Multidistribuicao ;
+                           rdfs:domain :MultiDistribuicao ;
+                           rdfs:range :Ramal .
+
+
+###  http://network.com#multiDistribuicaoHasTelevisao
+:multiDistribuicaoHasTelevisao rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf :SW_Multidistribuicao ;
+                               rdfs:domain :MultiDistribuicao ;
+                               rdfs:range :Televisao .
+
+
+###  http://network.com#switchHasEquipament
+:switchHasEquipament rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/nemo/gufo#inheresIn
+gufo:inheresIn rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/nemo/gufo#mediates
+gufo:mediates rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://network.com#IP
+:IP rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Equipamento ;
+    rdfs:range xsd:string .
+
+
+###  http://network.com#MAC
+:MAC rdf:type owl:DatatypeProperty ;
+     rdfs:domain :Equipamento ;
+     rdfs:range xsd:string .
+
+
+###  http://network.com#MAC_SW
+:MAC_SW rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:domain :SWITCH ;
+        rdfs:range xsd:string .
+
+
+###  http://network.com#Marca
+:Marca rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Equipamento ;
+       rdfs:range xsd:string .
+
+
+###  http://network.com#Marca_SW
+:Marca_SW rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :SWITCH ;
+          rdfs:range xsd:string .
+
+
+###  http://network.com#Modelo
+:Modelo rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Equipamento ;
+        rdfs:range xsd:string .
+
+
+###  http://network.com#Modelo_SW
+:Modelo_SW rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :SWITCH ;
+           rdfs:range xsd:string .
+
+
+###  http://network.com#Num_Ramal
+:Num_Ramal rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Ramal ;
+           rdfs:range xsd:int .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://network.com#AccessType
+:AccessType rdf:type owl:Class ;
+            rdfs:subClassOf gufo:IntrinsicMode .
+
+
+###  http://network.com#Celular
+:Celular rdf:type owl:Class ;
+         rdfs:subClassOf :Tipos_Equipamentos .
+
+
+###  http://network.com#Comunicacao
+:Comunicacao rdf:type owl:Class ;
+             rdfs:subClassOf gufo:Relator .
+
+
+###  http://network.com#DADOS
+:DADOS rdf:type owl:Class ;
+       rdfs:subClassOf :Comunicacao ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty gufo:mediates ;
+                         owl:someValuesFrom :SWITCH_Core
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty gufo:mediates ;
+                         owl:someValuesFrom :SWITCH_Distribuico
+                       ] .
+
+
+###  http://network.com#DNS
+:DNS rdf:type owl:Class ;
+     rdfs:subClassOf :Comunicacao ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty gufo:mediates ;
+                       owl:someValuesFrom :SWITCH_Core
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty gufo:mediates ;
+                       owl:someValuesFrom :SWITCH_Distribuico
+                     ] .
+
+
+###  http://network.com#DistribuirIP
+:DistribuirIP rdf:type owl:Class ;
+              rdfs:subClassOf :Comunicacao ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty gufo:mediates ;
+                                owl:someValuesFrom :Equipamento
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty gufo:mediates ;
+                                owl:someValuesFrom :SWITCH_Distribuico
+                              ] .
+
+
+###  http://network.com#Equipamento
+:Equipamento rdf:type owl:Class ;
+             rdfs:subClassOf gufo:FunctionalComplex ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty [ owl:inverseOf gufo:mediates
+                                              ] ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :DistribuirIP
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                              ] ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :IP
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                              ] ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :MAC
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                              ] ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :Marca
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                              ] ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :Modelo
+                             ] .
+
+
+###  http://network.com#EquipamentoV4
+:EquipamentoV4 rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Equipamento
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :Recebe_IP ;
+                                                            owl:someValuesFrom :IPV4
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Equipamento .
+
+
+###  http://network.com#EquipamentoV6
+:EquipamentoV6 rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Equipamento
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :Recebe_IP ;
+                                                            owl:someValuesFrom :IPV6
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Equipamento .
+
+
+###  http://network.com#IP
+:IP rdf:type owl:Class ;
+    rdfs:subClassOf gufo:IntrinsicMode ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty gufo:inheresIn ;
+                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                      owl:onClass :Equipamento
+                    ] .
+
+
+###  http://network.com#IPV4
+:IPV4 rdf:type owl:Class ;
+      rdfs:subClassOf :IP ;
+      owl:disjointWith :IPV6 .
+
+
+###  http://network.com#IPV6
+:IPV6 rdf:type owl:Class ;
+      rdfs:subClassOf :IP .
+
+
+###  http://network.com#Impressora
+:Impressora rdf:type owl:Class ;
+            rdfs:subClassOf :Tipos_Equipamentos .
+
+
+###  http://network.com#MAC
+:MAC rdf:type owl:Class ;
+     rdfs:subClassOf gufo:Quality ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty gufo:inheresIn ;
+                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                       owl:onClass :Equipamento
+                     ] .
+
+
+###  http://network.com#MAC_SW
+:MAC_SW rdf:type owl:Class ;
+        rdfs:subClassOf gufo:Quality ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty gufo:inheresIn ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Equipamento
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty gufo:inheresIn ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :SWITCH
+                        ] .
+
+
+###  http://network.com#Marca
+:Marca rdf:type owl:Class ;
+       rdfs:subClassOf gufo:Quality ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty gufo:inheresIn ;
+                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Equipamento
+                       ] .
+
+
+###  http://network.com#Marca_SW
+:Marca_SW rdf:type owl:Class ;
+          rdfs:subClassOf gufo:Quality ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty gufo:inheresIn ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :SWITCH
+                          ] .
+
+
+###  http://network.com#Modelo
+:Modelo rdf:type owl:Class ;
+        rdfs:subClassOf gufo:IntrinsicMode ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty gufo:inheresIn ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Equipamento
+                        ] .
+
+
+###  http://network.com#Modelo_SW
+:Modelo_SW rdf:type owl:Class ;
+           rdfs:subClassOf gufo:Quality ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty gufo:inheresIn ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :SWITCH
+                           ] .
+
+
+###  http://network.com#MultiDistribuicao
+:MultiDistribuicao rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :SWITCH_Distribuico
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :switchHasEquipament ;
+                                                                owl:someValuesFrom :Celular
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :switchHasEquipament ;
+                                                                owl:someValuesFrom :Impressora
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :switchHasEquipament ;
+                                                                owl:someValuesFrom :Ramal
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :switchHasEquipament ;
+                                                                owl:someValuesFrom :Televisao
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf :SWITCH_Distribuico .
+
+
+###  http://network.com#Ramal
+:Ramal rdf:type owl:Class ;
+       rdfs:subClassOf :Tipos_Equipamentos .
+
+
+###  http://network.com#Roteador
+:Roteador rdf:type owl:Class ;
+          rdfs:subClassOf gufo:FunctionalComplex .
+
+
+###  http://network.com#SWITCH
+:SWITCH rdf:type owl:Class ;
+        rdfs:subClassOf gufo:FunctionalComplex ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                         ] ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :MAC_SW
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                         ] ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Marca_SW
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty [ owl:inverseOf gufo:inheresIn
+                                         ] ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Modelo_SW
+                        ] .
+
+
+###  http://network.com#SWITCH_Core
+:SWITCH_Core rdf:type owl:Class ;
+             rdfs:subClassOf :SWITCH ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty gufo:mediates ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :Comunicacao
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty gufo:mediates ;
+                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :SWITCH
+                             ] ;
+             owl:disjointWith :SWITCH_Distribuico .
+
+
+###  http://network.com#SWITCH_Distribuico
+:SWITCH_Distribuico rdf:type owl:Class ;
+                    rdfs:subClassOf :SWITCH ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty gufo:mediates ;
+                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :Comunicacao
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty [ owl:inverseOf gufo:mediates
+                                                     ] ;
+                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :DistribuirIP
+                                    ] .
+
+
+###  http://network.com#Servidor
+:Servidor rdf:type owl:Class ;
+          rdfs:subClassOf gufo:FunctionalComplex .
+
+
+###  http://network.com#Servidor_Backup
+:Servidor_Backup rdf:type owl:Class ;
+                 rdfs:subClassOf :Servidor .
+
+
+###  http://network.com#Servidor_DNS
+:Servidor_DNS rdf:type owl:Class ;
+              rdfs:subClassOf :Servidor .
+
+
+###  http://network.com#Televisao
+:Televisao rdf:type owl:Class ;
+           rdfs:subClassOf :Tipos_Equipamentos .
+
+
+###  http://network.com#Tipos_Equipamentos
+:Tipos_Equipamentos rdf:type owl:Class ;
+                    rdfs:subClassOf :Equipamento .
+
+
+###  http://network.com#Troca_comunicacao
+:Troca_comunicacao rdf:type owl:Class ;
+                   rdfs:subClassOf :Comunicacao ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty gufo:mediates ;
+                                     owl:someValuesFrom :Equipamento
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty gufo:mediates ;
+                                     owl:someValuesFrom :SWITCH_Distribuico
+                                   ] .
+
+
+###  http://purl.org/nemo/gufo#Category
+gufo:Category rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#FunctionalComplex
+gufo:FunctionalComplex rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#IntrinsicMode
+gufo:IntrinsicMode rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#Kind
+gufo:Kind rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#MaterialRelationshipType
+gufo:MaterialRelationshipType rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#Quality
+gufo:Quality rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#Relator
+gufo:Relator rdf:type owl:Class .
+
+
+###  http://purl.org/nemo/gufo#SubKind
+gufo:SubKind rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://network.com#AccessType
+:AccessType rdf:type owl:NamedIndividual ,
+                     gufo:Kind .
+
+
+###  http://network.com#Celular
+:Celular rdf:type owl:NamedIndividual ,
+                  gufo:Kind .
+
+
+###  http://network.com#Celular2
+:Celular2 rdf:type owl:NamedIndividual ,
+                   :Celular ;
+          :Recebe_IP :IP5 ;
+          :comunica :Ramal1 .
+
+
+###  http://network.com#Comunicacao
+:Comunicacao rdf:type owl:NamedIndividual ,
+                      gufo:Kind .
+
+
+###  http://network.com#DADOS
+:DADOS rdf:type owl:NamedIndividual ,
+                gufo:SubKind .
+
+
+###  http://network.com#DNS
+:DNS rdf:type owl:NamedIndividual ,
+              gufo:SubKind .
+
+
+###  http://network.com#DistribuirIP
+:DistribuirIP rdf:type owl:NamedIndividual ,
+                       gufo:SubKind .
+
+
+###  http://network.com#Envia_DNS
+:Envia_DNS rdf:type owl:NamedIndividual ,
+                    gufo:MaterialRelationshipType .
+
+
+###  http://network.com#Envia_Dados
+:Envia_Dados rdf:type owl:NamedIndividual ,
+                      gufo:MaterialRelationshipType .
+
+
+###  http://network.com#Envia_info
+:Envia_info rdf:type owl:NamedIndividual ,
+                     gufo:MaterialRelationshipType .
+
+
+###  http://network.com#Equipamento
+:Equipamento rdf:type owl:NamedIndividual ,
+                      gufo:Category .
+
+
+###  http://network.com#IP1
+:IP1 rdf:type owl:NamedIndividual ,
+              :IPV4 ;
+     :IP "192.168.0.1" .
+
+
+###  http://network.com#IP10
+:IP10 rdf:type owl:NamedIndividual ,
+               :IPV6 .
+
+
+###  http://network.com#IP2
+:IP2 rdf:type owl:NamedIndividual ,
+              :IPV4 .
+
+
+###  http://network.com#IP5
+:IP5 rdf:type owl:NamedIndividual ,
+              :IPV4 .
+
+
+###  http://network.com#IP6
+:IP6 rdf:type owl:NamedIndividual ,
+              :IPV6 .
+
+
+###  http://network.com#IP8
+:IP8 rdf:type owl:NamedIndividual ,
+              :IPV4 .
+
+
+###  http://network.com#IP9
+:IP9 rdf:type owl:NamedIndividual ,
+              :IPV6 .
+
+
+###  http://network.com#IPv4
+:IPv4 rdf:type owl:NamedIndividual ,
+               gufo:Kind .
+
+
+###  http://network.com#Impressora
+:Impressora rdf:type owl:NamedIndividual ,
+                     gufo:Kind .
+
+
+###  http://network.com#Impressora1
+:Impressora1 rdf:type owl:NamedIndividual ,
+                      :Impressora ;
+             :Recebe_IP :IP10 ,
+                        :IP2 ;
+             :MAC "00:1B:44:11:3A:B7" ;
+             :Marca "HP" ;
+             :Modelo "Ultra premium" .
+
+
+###  http://network.com#Ips
+:Ips rdf:type owl:NamedIndividual ,
+              gufo:Kind .
+
+
+###  http://network.com#MAC
+:MAC rdf:type owl:NamedIndividual ,
+              gufo:Kind .
+
+
+###  http://network.com#MAC_SW
+:MAC_SW rdf:type owl:NamedIndividual ,
+                 gufo:Kind .
+
+
+###  http://network.com#Marca
+:Marca rdf:type owl:NamedIndividual ,
+                gufo:Kind .
+
+
+###  http://network.com#Marca_SW
+:Marca_SW rdf:type owl:NamedIndividual ,
+                   gufo:Kind .
+
+
+###  http://network.com#Modelo
+:Modelo rdf:type owl:NamedIndividual ,
+                 gufo:Kind .
+
+
+###  http://network.com#Modelo_SW
+:Modelo_SW rdf:type owl:NamedIndividual ,
+                    gufo:Kind .
+
+
+###  http://network.com#Motorola
+:Motorola rdf:type owl:NamedIndividual ,
+                   :Celular ;
+          :Recebe_IP :IP1 ;
+          :MAC "00:1B:44:11:3A:B7" ;
+          :Marca "Motorola" .
+
+
+###  http://network.com#MultiDistribuicao
+:MultiDistribuicao rdf:type owl:NamedIndividual ,
+                            gufo:SubKind .
+
+
+###  http://network.com#Ping
+:Ping rdf:type owl:NamedIndividual ,
+               gufo:Kind .
+
+
+###  http://network.com#Ramal
+:Ramal rdf:type owl:NamedIndividual ,
+                gufo:Kind .
+
+
+###  http://network.com#Ramal1
+:Ramal1 rdf:type owl:NamedIndividual ,
+                 :Ramal ;
+        :comunica :Impressora1 ,
+                  :Ramal4 ;
+        :Marca "Intelbras" ;
+        :Modelo "Model 3B-03" ;
+        :Num_Ramal "0803"^^xsd:int .
+
+
+###  http://network.com#Ramal2
+:Ramal2 rdf:type owl:NamedIndividual ,
+                 :Ramal ;
+        :Num_Ramal 0801 .
+
+
+###  http://network.com#Ramal3
+:Ramal3 rdf:type owl:NamedIndividual ,
+                 :Ramal ;
+        :Recebe_IP :IP8 ;
+        :Num_Ramal 0810 .
+
+
+###  http://network.com#Ramal4
+:Ramal4 rdf:type owl:NamedIndividual ,
+                 :Ramal ;
+        :Num_Ramal 0800 .
+
+
+###  http://network.com#Requisita
+:Requisita rdf:type owl:NamedIndividual ,
+                    gufo:SubKind .
+
+
+###  http://network.com#Roteador
+:Roteador rdf:type owl:NamedIndividual ,
+                   gufo:Kind .
+
+
+###  http://network.com#SWITCH
+:SWITCH rdf:type owl:NamedIndividual ,
+                 gufo:Kind .
+
+
+###  http://network.com#SWITCH_Core
+:SWITCH_Core rdf:type owl:NamedIndividual ,
+                      gufo:SubKind .
+
+
+###  http://network.com#SWITCH_Distribuico
+:SWITCH_Distribuico rdf:type owl:NamedIndividual ,
+                             gufo:SubKind .
+
+
+###  http://network.com#Serv_Backup1
+:Serv_Backup1 rdf:type owl:NamedIndividual ,
+                       :Servidor_Backup .
+
+
+###  http://network.com#Serv_DNS1
+:Serv_DNS1 rdf:type owl:NamedIndividual ,
+                    :Servidor_DNS .
+
+
+###  http://network.com#Servidor
+:Servidor rdf:type owl:NamedIndividual ,
+                   gufo:Kind .
+
+
+###  http://network.com#Servidor_Backup
+:Servidor_Backup rdf:type owl:NamedIndividual ,
+                          gufo:SubKind .
+
+
+###  http://network.com#Servidor_DNS
+:Servidor_DNS rdf:type owl:NamedIndividual ,
+                       gufo:SubKind .
+
+
+###  http://network.com#Solicita_DNS
+:Solicita_DNS rdf:type owl:NamedIndividual ,
+                       gufo:MaterialRelationshipType .
+
+
+###  http://network.com#Solicita_info
+:Solicita_info rdf:type owl:NamedIndividual ,
+                        gufo:MaterialRelationshipType .
+
+
+###  http://network.com#Solicitacao_DNS
+:Solicitacao_DNS rdf:type owl:NamedIndividual .
+
+
+###  http://network.com#Switch1
+:Switch1 rdf:type owl:NamedIndividual ,
+                  :SWITCH_Distribuico ;
+         :Envia_IP :IP1 ,
+                   :IP2 ,
+                   :IP5 ,
+                   :IP8 ;
+         :Envia_Informacoess :Impressora1 ,
+                             :Ramal1 ,
+                             :Ramal4 ;
+         :switchHasEquipament :Impressora1 ,
+                              :Motorola ,
+                              :Ramal1 ,
+                              :Televisao1 .
+
+
+###  http://network.com#Switch_Core1
+:Switch_Core1 rdf:type owl:NamedIndividual ,
+                       :SWITCH_Core ;
+              :Envia_Informacoess :Switch1 ;
+              :Request_DADOS :Serv_Backup1 ;
+              :Request_DNS :Serv_DNS1 .
+
+
+###  http://network.com#Televisao
+:Televisao rdf:type owl:NamedIndividual ,
+                    gufo:Kind .
+
+
+###  http://network.com#Televisao1
+:Televisao1 rdf:type owl:NamedIndividual ,
+                     :Televisao ;
+            :comunica :Ramal1 ;
+            :MAC "00:1B:44:11:3A:B7" ;
+            :Marca "Samsung" ;
+            :Modelo "4K QLED" .
+
+
+###  http://network.com#Troca_comunicacao
+:Troca_comunicacao rdf:type owl:NamedIndividual ,
+                            gufo:SubKind .
+
+
+###  http://network.com#multiDistribuicaoHasCelular
+:multiDistribuicaoHasCelular rdf:type owl:NamedIndividual ,
+                                      gufo:MaterialRelationshipType .
+
+
+###  http://network.com#multiDistribuicaoHasImpressora
+:multiDistribuicaoHasImpressora rdf:type owl:NamedIndividual ,
+                                         gufo:MaterialRelationshipType .
+
+
+###  http://network.com#multiDistribuicaoHasRamal
+:multiDistribuicaoHasRamal rdf:type owl:NamedIndividual ,
+                                    gufo:MaterialRelationshipType .
+
+
+###  http://network.com#multiDistribuicaoHasTelevisao
+:multiDistribuicaoHasTelevisao rdf:type owl:NamedIndividual ,
+                                        gufo:MaterialRelationshipType .
+
+
+[ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+[ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+ ] .
+
+[ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+ ] .
+
+[ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+ ] .
+
+#################################################################
+#    Annotations
+#################################################################
+
+:AccessType rdfs:label "AccessType"@en .
+
+
+:Celular rdfs:label "Celular"@en .
+
+
+:Comunicacao rdfs:label "Comunicacao"@en .
+
+
+:DistribuirIP rdfs:label "DistribuirIP"@en .
+
+
+:Envia_Dados rdfs:label "Internet"@en .
+
+
+:IP rdfs:label "IP"@en .
+
+
+:Impressora rdfs:label "Impressora"@en .
+
+
+:MAC rdfs:label "MAC"@en .
+
+
+:MAC_SW rdfs:label "MAC_SW"@en .
+
+
+:Marca rdfs:label "Marca"@en .
+
+
+:Marca_SW rdfs:label "Marca_SW"@en .
+
+
+:Modelo rdfs:label "Modelo"@en .
+
+
+:Modelo_SW rdfs:label "Modelo_SW"@en .
+
+
+:MultiDistribuicao rdfs:label "MultiDistribuicao"@en .
+
+
+:Ramal rdfs:label "Ramal"@en .
+
+
+:Roteador rdfs:label "Roteador"@en .
+
+
+:SWITCH rdfs:label "SWITCH"@en .
+
+
+:SWITCH_Core rdfs:label "SWITCH_Core"@en .
+
+
+:SWITCH_Distribuico rdfs:label "SWITCH_Distribuicao"@en .
+
+
+:Servidor rdfs:label "Servidor"@en .
+
+
+:Servidor_Backup rdfs:label "Servidor_Backup"@en .
+
+
+:Servidor_DNS rdfs:label "Servidor_DNS"@en .
+
+
+:Televisao rdfs:label "Televisao"@en .
+
+
+:Troca_comunicacao rdfs:label "Troca_comunicacao"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DADOS
+                :DNS
+                :DistribuirIP
+                :Troca_comunicacao
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Equipamento
+                :Roteador
+                :SWITCH
+                :Servidor
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
